@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Laboratorio 3 TSC 2016</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="../css/dashboard.css" rel="stylesheet">
+    <link href="../lib/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../lib/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">TSC 2016-2</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a><b>Bienvenido: &nbsp;</b><span id="navbar-username"> Anónimo</span></a></li>
+                    <li><a href="#" id="reload-button">Recargar vista</a></li>
+                    <li><a href="#" id="logout-button">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 col-sm-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="#">Boletas</a></li>
+                    <li><a href="contribuyentes.html">Contribuyentes</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-10 col-sm-offset-2 col-md-offset-2 main" style="top:0px;">
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#contribuyente-body" style="cursor: pointer">
+                            Datos Contribuyente
+                        </div>
+                        <div id="contribuyente-body" class="panel-body collapse">
+                            <div class="form-group">
+                                <label>Nombres</label>
+                                <input id="contribuyente-name" type="text" class="form-control">
+                                <label>Apellidos</label>
+                                <input id="contribuyente-lastnames" type="text" class="form-control">
+                                <label>Rut</label>
+                                <input id="contribuyente-rut" type="text" class="form-control">
+                                <label>Direccion</label>
+                                <input id="contribuyente-address" type="text" class="form-control">
+                            </div>
+                            <button id="edit-contribuyente-button" type="button" class="btn btn-info">Modificar Datos</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#new-boleta-body" style="cursor: pointer">
+                            Nueva Boleta
+                        </div>
+                        <div id="new-boleta-body" class="panel-body collapse">
+                            <div class="form-group">
+                                <label>Receptor</label>
+                                <input id="new-receiver" type="text" class="form-control">
+                                <label>Rut receptor</label>
+                                <input id="new-receiver-rut" type="text" class="form-control">
+                                <label>Monto</label>
+                                <input id="new-amount" type="text" class="form-control">
+                            </div>
+                            <button id="new-boleta-button" type="button" class="btn btn-info">Crear</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-10 col-sm-offset-2 col-md-offset-2 main" >
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"> Boletas Emitidas</div>
+                        <div class="panel-body">
+                            <table id="tabla-boletas-emitidas" class="table table-responsive" style="width:100%"></table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"> Boletas Revocadas</div>
+                        <div class="panel-body">
+                            <table id="tabla-boletas-revocadas" class="table table-responsive" style="width:100%"></table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<!-- Modal revocation -->
+    <div id="revocation-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Revocar boleta</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Razón de la revocación</label>
+                        <input id="revocation-reason" type="text" class="form-control">
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button id="confirm-revocation-button" type="button" class="btn btn-danger" disabled>Revocar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal revocation -->
+    <div id="boleta-edit-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Editar boleta</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Receptor</label>
+                        <input id="edit-receiver" type="text" class="form-control">
+                        <label>Rut receptor</label>
+                        <input id="edit-receiver-rut" type="text" class="form-control">
+                        <label>Monto</label>
+                        <input id="edit-amount" type="number" class="form-control">
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button id="confirm-boleta-edit" type="button" class="btn btn-warning">Editar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal delete -->
+    <div id="boleta-delete-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Eliminar boleta</h4>
+                </div>
+                <div class="modal-body">
+                    <p>¿Seguro desea eliminar esta boleta?</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button id="confirm-boleta-delete" type="button" class="btn btn-warning">Sí, eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/global.js"></script>
+    <script src="../lib/js/jquery-3.1.1.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../lib/js/jquery.dataTables.min.js"></script>
+    <script src="../js/queries/contribuyentes.js"></script>
+    <script src="../js/queries/boletas.js"></script>
+    <script src="../js/queries/revocaciones.js"></script>
+    <script src="../js/views/boletas.js"></script>
+    <script src="../js/views/navbar.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            boletasView.init();
+        });
+    </script>
+
+</body>
+</html>

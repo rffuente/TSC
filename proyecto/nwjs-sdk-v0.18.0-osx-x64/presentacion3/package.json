@@ -1,0 +1,10 @@
+{
+  "name" : "laboratorio 3 TSC 2016",
+  "main" : "www/index.html",
+  "version" : "1.0",
+  "window": {
+    "toolbar": true,
+    "width": 1000,
+    "height" : 650
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name" : "ejemplo-app",
+  "main" : "www/index.html",
+  "window" : {
+    "width" : 1000,
+    "height" : 700
+  },
+  "dependencies": {
+    "calculator" : "0.1.12"
+  }
+}

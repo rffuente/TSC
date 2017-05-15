@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo de aplicación</title>
+</head>
+<body>
+    <div>
+        <h1>Página de inicio</h1>
+    </div>
+    <div>
+        <button type="button" id="button-next"> Siguiente página</button>
+    </div>
+
+
+    <script src="../lib/jquery/js/jquery-3.1.1.min.js" ></script>
+    <script>
+        $(document).ready(function(){
+            $('#button-next').click(function(){
+                console.log("click");
+                window.location.href = "page1.html";
+            });
+        });
+    </script>
+</body>
+</html>

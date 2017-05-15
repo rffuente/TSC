@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Laboratorio 3 TSC 2016</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="../css/cover.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="site-wrapper">
+
+
+
+                <div class="container" style="margin-top:200px;">
+                    <div class="row">
+                        <div class="col-md-offset-4 col-md-4">
+                            <div class="form-login">
+                                <h4>Registrarse</h4>
+                                <input type="text" id="fullname" class="form-control input-sm chat-input" placeholder="Nombre completo" />
+                                </br>
+                                <input type="text" id="username" class="form-control input-sm chat-input" placeholder="Nombre de usuario" />
+                                </br>
+                                <input type="password" id="password" class="form-control input-sm chat-input" placeholder="Contraseña" />
+                                </br>
+                                <input type="email" id="email" class="form-control input-sm chat-input" placeholder="Email" />
+                                </br>
+                                <div class="wrapper">
+                                <span class="group-btn">
+                                    <button type="button" id="button-register-user" class="btn btn-primary btn-md">Registrar <i class="fa fa-sign-in"></i></button>
+
+                                    <button type="button" id="button-back-index" class="btn btn-primary btn-md">Volver</button>
+                                </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+    </div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+    <script src="../lib/js/jquery-3.1.1.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/views/registro.js"></script>
+    <script src="../js/queries/registros.js"></script>
+
+    <script>
+
+        $(document).ready(function(){
+            registroView.init();
+        });
+
+    </script>
+
+</body>
+</html>

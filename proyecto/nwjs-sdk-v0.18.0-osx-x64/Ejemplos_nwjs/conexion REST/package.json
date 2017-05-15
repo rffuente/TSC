@@ -1,0 +1,8 @@
+{
+  "name" : "ejemplo-app",
+  "main" : "www/index.html",
+  "window" : {
+    "width" : 1000,
+    "height" : 700
+  }
+}

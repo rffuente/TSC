@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+    <div class="main">
+        <div class="row">
+            <div class="col-md-12">
+                <div>
+                    <h2>Ejemplo Storage</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Local Storage al inicio
+                        </div>
+                        <div class="panel-body" id="local-storage-1">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Local storage actual
+                        </div>
+                        <div class="panel-body" id="local-storage-2">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Session Storage al inicio
+                        </div>
+                        <div class="panel-body" id="session-storage-1">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Session storage actual
+                        </div>
+                        <div class="panel-body" id="session-storage-2">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            Modificar local storage
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-6">
+                                <label>Ingresar valor</label>
+                                <input type="text" id="local-storage-value" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <br>
+                                <button type="button" id="button-change-local-storage" class="btn btn-info">Cambiar</button>
+                                <button type="button" id="button-clear-local-storage" class="btn btn-warning">Limpiar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            Modificar session storage
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-6">
+                                <label>Ingresar valor</label>
+                                <input type="text" id="session-storage-value" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <br>
+                                <button type="button" id="button-change-session-storage" class="btn btn-info">Cambiar</button>
+                                <button type="button" id="button-clear-session-storage" class="btn btn-warning">Limpiar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="../lib/jquery/js/jquery-3.1.1.min.js" ></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var lStorage = window.localStorage.getItem("example_ls");
+            $('#local-storage-1, #local-storage-2').html("<h2>" + lStorage + "</h2>");
+            var sStorage = window.localStorage.getItem("example_ss");
+            $('#session-storage-1, #session-storage-2').html("<h2>" + sStorage + "</h2>");
+
+            $('#button-change-local-storage').click(function(){
+                var lStorage = $('#local-storage-value').val();
+                window.localStorage.setItem("example_ls", lStorage);
+                $('#local-storage-2').html("<h2>" + lStorage + "</h2>");
+            });
+
+            $('#button-change-session-storage').click(function(){
+                var sStorage = $('#session-storage-value').val();
+                window.sessionStorage.setItem("example_ss", sStorage);
+                $('#session-storage-2').html("<h2>" + sStorage + "</h2>");
+            });
+
+            $('#button-clear-local-storage').click(function(){
+                window.localStorage.clear();
+                var lStorage = window.localStorage.getItem("example_ls");
+                $('#local-storage-2').html("<h2>" + lStorage + "</h2>");
+            });
+
+            $('#button-clear-session-storage').click(function(){
+                window.localStorage.clear();
+                var sStorage = window.localStorage.getItem("example_ss");
+                $('#session-storage-2').html("<h2>" + sStorage + "</h2>");
+            });
+
+        });
+    </script>
+</body>
+</html>

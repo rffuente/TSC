@@ -1,0 +1,36 @@
+- crear usuario:
+	- http://localhost:8888/users/ con metodo POST	
+	- {"user_name":"Carlos","full_name":"Carlos jauregui","email":"carlos.jauregui@alumnos.usm.cl","password":"Niacaniaca"}
+
+-  usuario en base64:
+	- Y2FybG9zLmphdXJlZ3VpQGFsdW1ub3MudXNtLmNsOk5pYWNhbmlhY2E=
+
+- crear nota:
+	- http://localhost:8888/notes/ con metodo POST
+	- {"user_id":"2","title":"lab fisica","description":"ir a laboratorio de fisica el viernes 14 de octubre."}
+
+- crear etiqueta:
+	- http://localhost:8888/tags/ con metodo POST
+	- {"user_id":"2","tag_name":"fis4","description":"fisica 140"}
+
+- asignar una etiqueta a una nota:
+	- http://localhost:8888/notes/id/assign_tag con metodo POST
+	- {"tag_id":"1"}
+
+- desplegar info de notas y etiquetas de cada usuario:
+	- http://localhost:8888/users/user_id/notes_tags con metodo GET
+
+
+- en caso de borrar nota:
+	- http://localhost:8888/notes/note_id con metodo DELETE
+
+- en caso de modificar:
+	- http://localhost:8888/notes/note_id con metodo PATCH
+	- {"description":"ir a laboratorio de fisica el viernes 21 de octubre."}
+
+- en caso de borrar etiqueta:
+	- http://localhost:8888/tags/tag_id con metodo DELETE
+
+- en caso de modificar:
+	- http://localhost:8888/tags/tag_id con metodo PATCH
+	- {"description":"Fisica 140."}

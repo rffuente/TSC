@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <h1>Ejemplo de uso de módulo node.js (calculator)</h1>
+    </div>
+    <div>
+        <label>Función : </label><input type="text" id="fn" />
+        <br>
+        <label>Punto a evaluar: </label><input type="number" id="point" />
+        <br>
+        <button type="button" id="button-derive"> Obtener derivada</button>
+
+        <br>
+        <div id="result">
+
+        </div>
+
+        <br>
+        <br>
+        <button type="button" id="button-next"> Siguiente ejemplo</button>
+    </div>
+
+    <script src="../lib/jquery/js/jquery-3.1.1.min.js" ></script>
+    <script>
+        $(document).ready(function(){
+            var calculator = require('calculator');
+            $('#button-derive').click(function(){
+                var result = calculator.derive('f(x) = ' + $('#fn').val(), $('#point').val());
+                $('#result').html("<h2>" + result + "</h2>");
+            });
+
+            $('#button-next').click(function(){
+                window.location.href = "page2.html";
+            });
+        });
+    </script>
+</body>
+</html>

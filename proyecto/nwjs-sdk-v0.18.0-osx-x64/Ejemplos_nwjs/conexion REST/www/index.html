@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/jquery/css/jquery.dataTables.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+    <div class="main">
+
+        <div class="col-md-12">
+            <div>
+                <h2>Ejemplo conexión REST</h2>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    API Combustibles Viña del Mar
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <table id="table-oil" class="table table-responsive" style="width:100%"></table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-success" style="display:none" id="panel-result">
+                <div class="panel-heading">
+                    Resultado
+                </div>
+                <div class="panel-body">
+                    <div id="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="../lib/jquery/js/jquery-3.1.1.min.js" ></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../lib/jquery/js/jquery.dataTables.min.js"></script>
+    <script src="../js/combustibles.js"></script>
+    <script>
+        $(document).ready(function(){
+            combustibles.get();
+        });
+
+        function buildTable(json){
+            console.log("tabla");
+            var data = [];
+            for(var i = 0; i< json.data.length; i++){
+                var aux = {};
+                aux.direccion = json.data[i].direccion_calle + " " + json.data[i].direccion_numero;
+                aux.distribuidor = json.data[i].distribuidor.nombre;
+                if(json.data[i].precios.hasOwnProperty("gasolina 93"))
+                    aux.price_93 = json.data[i].precios["gasolina 93"];
+                else
+                    aux.price_93 = "-";
+                if(json.data[i].precios.hasOwnProperty("gasolina 95"))
+                    aux.price_95 = json.data[i].precios["gasolina 95"];
+                else
+                    aux.price_95 = "-";
+                if(json.data[i].precios.hasOwnProperty("gasolina 97"))
+                    aux.price_97 = json.data[i].precios["gasolina 97"];
+                else
+                    aux.price_97 = "-";
+                data = data.concat(aux);
+            }
+
+            var table  = $('#table-oil').DataTable( {
+                data: data,
+                columns: [
+                    { title: "direccion", data: "direccion" },
+                    { title: "distribuidor", data: "distribuidor" },
+                    { title: "Precio 93", data: "price_93" },
+                    { title: "Precio 95", data: "price_95" },
+                    { title: "Precio 97", data : "price_97" }
+                ]
+            } );
+        }
+
+    </script>
+</body>
+</html>
